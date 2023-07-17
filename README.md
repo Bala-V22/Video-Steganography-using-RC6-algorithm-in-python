@@ -1,7 +1,7 @@
 # Video-Steganography-using-RC6-algorithm-in-python
 I'm Develop the video steganography. the process is give the hidden text and password and video for hide. first encrypt the text with password then separate the frame of video and hide the encrypted text into image after the process all images is converted to the 1 video. in the same process reverse with correct password reveal the hidden text.
 
-Some Screen shot about the project 👍
+<b>Some Screen shot about the project 👍</b>
 
 <br>
 
@@ -18,3 +18,8 @@ Some Screen shot about the project 👍
 <br>
 
 ![Screenshot 2023-07-17 125045](https://github.com/Bala-V22/Video-Steganography-using-RC6-algorithm-in-python/assets/134045414/f62553fc-64e9-4d0d-9de2-ea05d23f3b57)
+
+
+<b>How to run?</b>
+Run the app.py 
+if you run in anaconda python app.py
