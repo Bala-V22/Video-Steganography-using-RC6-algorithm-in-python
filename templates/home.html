@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganogrphy</title>
+    <style>
+        body{
+            background-image: url({{ url_for('static', filename='home.jpg') }});
+            background-repeat: no-repeat;
+        background-size:cover ;
+
+        }
+
+        .hole{
+            position: absolute;
+            left: 20%;
+            top: 44%;
+            display: flex;
+            
+        }
+
+        button{
+            padding: 10px 30px;
+            margin: 25px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: medium;
+            cursor: pointer;
+            transition: 0.5s;
+            
+        }
+
+        button:hover{
+            background-color:#00eeff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="hole">
+<form action="/imghome">
+    <button type="submit"><b>Image</b></button>
+</form>
+<form action="/vidhome">
+    <button type="submit"><b>video</b></button>
+</form>
+</div>
+</body>
+</html>

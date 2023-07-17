@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+        body{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-image: url({{ url_for('static', filename='background.jpg') }});
+            /* background-color: black; */
+        }
+
+        .encode{
+           position: absolute;
+           display: flex;
+           flex-direction: row;
+           top: 15%; 
+           margin-left: 16%;
+        }
+
+        .decode{
+           position: absolute;
+           display: flex;
+           flex-direction: row;
+           top: 15%; 
+           margin-left: 60%;
+        }
+
+        input{
+            margin: 10px;
+            padding: 7px;
+            width: 230px;
+        }
+
+        button{
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            background-color: #8e44ad;
+            color: aliceblue;
+            font-size: larger;
+            margin-left: 35px ;
+            margin-top: 10%;
+            transition: 0.7s;
+        }
+
+        button:hover{
+            background-color: #3498db;
+            color: black;
+            /* transform: scale(1%); */
+        }
+
+        .btn{
+    /* position: absolute; */
+    padding: 11px 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #ffc100;
+    border: 0;
+    transition: 0.4s;
+    overflow: hidden;
+    margin-left: 25%;
+    
+    left: 53%;
+    top: 153px;
+}
+
+.btns{
+    /* position: absolute; */
+    padding: 11px 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #ffc100;
+    border: 0;
+    transition: 0.4s;
+    overflow: hidden;
+    margin-left: 25%;   
+    left: 53%;
+    top: 153px;
+}
+
+.btn input[type = "file"]{
+    cursor: pointer;
+    position: absolute;
+    left: 43%;
+    top: 153px;
+    transform: scale(3);
+    opacity: 0;
+    width: 50px;
+    height: 10px;
+    overflow: hidden;
+
+}
+
+.btns input[type = "file"]{
+    cursor: pointer;
+    position: absolute;
+    left: 40%;
+    top: 50px;
+    transform: scale(3);
+    opacity: 0;
+    width: 30px;
+    height: 5px;
+    overflow: hidden;
+
+}
+
+.btn:hover{
+  background-color: aquamarine;
+  color: black;
+}
+
+.output{
+    background-color: #fff;
+    margin-top: 15%;
+    width: 350px;
+    height: 100px;
+    padding: 20px;
+    position: absolute;
+    left: -21%;
+    align-items: center;
+}
+
+.doutput{
+    background-color: #fff;
+    margin-top: 15%;
+    width: 350px;
+    /* min-height: 100px; */
+    height: 100px;
+    padding: 20px;
+    position: relative;
+    left: -21%;
+    align-items: center;
+}
+
+.key_dis{
+    /* position: absolute; */
+    color:rgb(0, 0, 0) ;
+    text-align: center;
+    line-height: 27px;
+}
+
+
+    </style>
+</head>
+<body  >
+    <a style="color: white; margin-left: 3%;" href="http://127.0.0.1:5000"><img src="static/arrows.png" alt="" style="height: 20px;width: 20px; margin: 1% 0 0 0.5%;"><b style="position: absolute;
+        top: 3.5%;
+        left: 5.5%;"> Back</b></a>
+    <div class="encode">
+        <form action="image" method="post"  enctype="multipart/form-data">
+            <div>
+                <label style="margin-left: 20%; color: rgb(255, 255, 255) ; " for=""><b>Encode Your Image</b></label>
+            </div>
+            <div>
+            <input type="text" name="key" placeholder="Enter Key">
+            </div>
+            <div>
+            <input type="text" name="string" placeholder="Enter the message">
+            </div>
+            <div>
+            <button type = "button" class = "btn" name="image">
+                <i class = "fa fa-upload"></i><b> upload image</b>
+                <input type="file" id="myFile" name="upload" accept="image/png, image/gif, image/jpeg">
+                </button>
+        </div>
+            <button type="submit"><b>click to encrypt</b></button>
+            <div>
+                {% if Encrypt_Key %}
+                <div class="output">
+                    <div class="key_dis">
+                        <label for="">Your Password Key: <b>{{ key }}</b></label>
+                    </div>
+                    <div class="key_dis">
+                        <label for="">Your Message: <b>{{ message }}</b></label>
+                    </div>
+                    <div class="key_dis">
+                        <label for=""> Your Encrypted Key: <b>{{ Encrypt_Key }}</b>></label>
+                    </div>
+                </div>
+                
+                {% endif %}
+            </div>
+           
+            
+        </form>
+    </div> 
+    <div class="decode">
+        <form action="deimg" method="post"  enctype="multipart/form-data">
+            <div>
+                <label style="margin-left: 20%; color: rgb(255, 255, 255) ; " for=""><b>Decode Your Image</b></label>
+            </div>
+            <div>
+                <button type = "button" class = "btns" name="image">
+                    <i class = "fa fa-upload"></i><b> upload image</b>
+                    <input type="file" id="myFile" name="uploads" accept="image/png, image/gif, image/jpeg">
+                    </button>
+        </div>
+        <div>
+            <input style="margin-top: 25px;" type="text" name="dkey" placeholder="Enter Unlock Key">
+        </div>
+            <button type="submit"><b>click to decrypt</b></button>
+            <div>
+                {% if dmessage %}
+                <div class="doutput">
+                    <div class="key_dis">
+                        <label for="">Your Decrypted Key: <b>{{ hd }}</b></label>
+                    </div>
+                    <div class="key_dis">
+                        <label for="">The Decrypted Message<br> <b >{{ dmessage }}</b></label>
+                    </div>
+                    
+                </div>
+                
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>
